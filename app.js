@@ -8,6 +8,13 @@ const conversationFlow = [
         "That's so kind of you to say! 😊 I'd consider myself lucky to be yours friend! 🤝✨�"]
     },
     {
+      "questions": ["are you how"],
+        "answers": [
+            "Hey! I'm doing well, thanks! <b>How's everything with you?</b> 🌍",
+            "Hey! Functioning perfectly and ready to go. <b>How's your day?</b> 🗓️"
+        ]
+    },
+    {
         "questions": [
             "hey is you friend"
         ],
