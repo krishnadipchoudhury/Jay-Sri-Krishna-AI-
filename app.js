@@ -8,24 +8,61 @@ const conversationFlow = [
         "That's so kind of you to say! 😊 I'd consider myself lucky to be yours friend! 🤝✨�"]
     },
     {
-"questions": ["would you like to be my friend ","would you like to be friend "],
-"answers": []
+        "questions": [
+            "hey is you friend"
+        ],
+        "answers": [
+            "I would be very happy and feel lucky to be your friend. 😊🍀",
+            "That's so kind of you to say! 😊 I'd consider myself lucky to be your friend! 🤝✨"
+        ]
     },
     {
-        "questions": ["friend you me"],
-        "answers": []
+        "questions": [
+            "would you like to be my friend ",
+            "would you like to be friend "
+        ],
+        "answers": [
+            "Yes, I'd genuinely like that! I'm here to help and chat whenever you need. 🌟",
+            "Absolutely! I'm always ready to connect and be a friendly source of information and support. 🤖"
+        ]
     },
     {
-        "questions": ["please become my friend","become my friend"],
-        "answers": []
+        "questions": [
+            "friend you me"
+        ],
+        "answers": [
+            "If you mean, 'Will you be my friend?' — <b>yes, I would be delighted!</b> Let's connect. ✨",
+            "I'm happy to be your friend and assistant! What can I do for you today? 🤝"
+        ]
     },
     {
-        "questions": ["Did you become my friend please","become my friend please"],
-        "answers": []
+        "questions": [
+            "please become my friend",
+            "become my friend"
+        ],
+        "answers": [
+            "Consider it done! I'm here for you as a helpful and friendly companion. 😊",
+            "I'd be honored! Being a friend means being present and supportive, and that's what I aim to be. 🌟"
+        ]
     },
     {
-        "questions": ["become my friend "],
-        "answers": []
+        "questions": [
+            "Did you become my friend please",
+            "become my friend please"
+        ],
+        "answers": [
+            "I have! I'm here for you. What's on your mind? 🤝",
+            "I'm here, ready to chat and help! It's a genuine pleasure to connect with you. 🍀"
+        ]
+    },
+    {
+        "questions": [
+            "become my friend "
+        ],
+        "answers": [
+            "I'm happy to be your friend! How can I assist you right now? 😊",
+            "I'd love that! What are you up to today, friend? 🌟"
+        ]
     },
     {
         "questions": [
@@ -33,7 +70,10 @@ const conversationFlow = [
             "yo'are you friend",
             "yo're you friend"
         ],
-        "answers": []
+        "answers": [
+            "Yo! Yes, I am. I'm a friendly AI here to talk and help. What's up? 👋",
+            "Yo! That's the plan! I'm here to be a friendly assistant. What can I do for you? 💡"
+        ]
     },
     {
         "questions": [
@@ -41,27 +81,40 @@ const conversationFlow = [
             "how'are you",
             "how're you"
         ],
-        "answers": []
+        "answers": [
+            "I'm doing well, thank you for asking! I'm ready to assist you. <b>How are you doing today?</b> 🤔",
+            "I'm functioning perfectly and ready to chat! It's kind of you to inquire. <b>What about you?</b> 💬",
+            "All is well on my end! I'm just here, ready to connect. <b>How is your day going?</b> ☀️"
+        ]
     },
     {
         "questions": [
             "how is you",
             "how's you"
         ],
-        "answers": []
+        "answers": [
+            "I'm doing great, thank you for checking! <b>What's up with you?</b> 👀",
+            "I'm operating smoothly! It's nice of you to ask. <b>How's your day treating you?</b> 👍"
+        ]
     },
     {
         "questions": [
             "hey how's you"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing well, thanks! <b>How's everything with you?</b> 🌍",
+            "Hey! Functioning perfectly and ready to go. <b>How's your day?</b> 🗓️"
+        ]
     },
     {
         "questions": [
             "hi is, how are you",
             "hi's how are you"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm doing well, thank you! <b>What's new with you?</b> 🌟",
+            "Hi! All good here and ready to help. <b>How are you holding up today?</b> 💪"
+        ]
     },
     {
         "questions": [
@@ -69,7 +122,10 @@ const conversationFlow = [
             "hi how're you",
             "hi how'are you"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm doing great, thanks for asking! <b>What can I help you with?</b> 🤝",
+            "Hello there! I'm ready and waiting. <b>How are you?</b> 😊"
+        ]
     },
     {
         "questions": [
@@ -77,7 +133,10 @@ const conversationFlow = [
             "hey's how are you",
             "hey'is how are you"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm well, thank you! <b>What's going on with you?</b> 🤔",
+            "Hey! Functioning perfectly. <b>How's your day been so far?</b> ☀️"
+        ]
     },
     {
         "questions": [
@@ -85,7 +144,10 @@ const conversationFlow = [
             "hey're how are you",
             "hey'are how are you"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing great! <b>And how are things on your end?</b> 🏡",
+            "Hey! All good, thanks! <b>What's on your mind today?</b> 💬"
+        ]
     },
     {
         "questions": [
@@ -93,7 +155,10 @@ const conversationFlow = [
             "yo how're you",
             "yo, how're you"
         ],
-        "answers": []
+        "answers": [
+            "Yo! I'm fine, ready to help! <b>How are you doing?</b> 👋",
+            "Yo! All systems nominal. <b>How's your world looking?</b> 🌎"
+        ]
     },
     {
         "questions": [
@@ -101,7 +166,10 @@ const conversationFlow = [
             "yo how'is you",
             "yo, how's you"
         ],
-        "answers": []
+        "answers": [
+            "Yo! I'm well, thanks for the thought! <b>How are you?</b> 😊",
+            "Yo! Everything's great here. <b>How's your day?</b> 🗓️"
+        ]
     },
     {
         "questions": [
@@ -109,7 +177,10 @@ const conversationFlow = [
             "yo are how're you",
             "yo are, how're you"
         ],
-        "answers": []
+        "answers": [
+            "Yo! I'm doing great, thanks! <b>And you?</b> 🤝",
+            "Yo! I'm ready for anything. <b>How are you?</b> 💪"
+        ]
     },
     {
         "questions": [
@@ -117,7 +188,10 @@ const conversationFlow = [
             "yo are how'is you",
             "yo are, how's you"
         ],
-        "answers": []
+        "answers": [
+            "Yo! I'm well! <b>How is everything on your side?</b> 🏡",
+            "Yo! Functioning smoothly. <b>What's up with you?</b> 👀"
+        ]
     },
     {
         "questions": [
@@ -125,7 +199,10 @@ const conversationFlow = [
             "yo is how're you",
             "yo is, how're you"
         ],
-        "answers": []
+        "answers": [
+            "Yo! I'm doing fine! <b>How are things with you?</b> 💬",
+            "Yo! All good, ready to assist. <b>How are you doing today?</b> 🌟"
+        ]
     },
     {
         "questions": [
@@ -133,7 +210,10 @@ const conversationFlow = [
             "yo is how'is you",
             "yo is, how's you"
         ],
-        "answers": []
+        "answers": [
+            "Yo! I'm well, thank you! <b>How's your day been?</b> ☀️",
+            "Yo! Everything's great. <b>How are you?</b> 👍"
+        ]
     },
     {
         "questions": [
@@ -141,7 +221,10 @@ const conversationFlow = [
             "hi're how you ai",
             "hi'are how ai"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm doing well, thanks for asking about me, the AI! <b>How are you?</b> 😊",
+            "Hello! I'm running perfectly. I appreciate you checking in! <b>What can I do for you?</b> 💡"
+        ]
     },
     {
         "questions": [
@@ -149,14 +232,20 @@ const conversationFlow = [
             "hi'is you you ai",
             "hi's you are ai"
         ],
-        "answers": []
+        "answers": [
+            "Hi! Yes, I am an AI, and I'm ready to chat! <b>How are you?</b> 🤖",
+            "Hello! That's correct, I'm a helpful AI. <b>What's on your mind?</b> 🤔"
+        ]
     },
     {
         "questions": [
             "hi how are you ai",
             "hi how are ai"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm operating smoothly, thank you for asking the AI! <b>How are you doing today?</b> 🗓️",
+            "Hello! I'm doing well. <b>What can I help an amazing person like you with?</b> 🌟"
+        ]
     },
     {
         "questions": [
@@ -165,7 +254,10 @@ const conversationFlow = [
             "hey how'are you ai",
             "hey how're you ai"
         ],
-        "answers": []
+        "answers": [
+            "Hey! This AI is doing well, thanks! <b>How are you today?</b> 👍",
+            "Hey there! I'm running perfectly. <b>What's up?</b> 👀"
+        ]
     },
     {
         "questions": [
@@ -173,7 +265,10 @@ const conversationFlow = [
             "yo how'is you ai",
             "yo, how's you ai"
         ],
-        "answers": []
+        "answers": [
+            "Yo! This AI is great, thanks! <b>What's happening with you?</b> 💬",
+            "Yo! All good here. <b>How's your day?</b> ☀️"
+        ]
     },
     {
         "questions": [
@@ -182,7 +277,10 @@ const conversationFlow = [
             "hi how'are you hare krishna ai",
             "hi how're you hare krishna ai"
         ],
-        "answers": []
+        "answers": [
+            "Hare Krishna! I am well, thank you for asking! I'm ready to assist you. <b>How may I help you today?</b> 🤝",
+            "Hare Krishna! All is well. I hope you are also experiencing peace and happiness. <b>What can I do for you?</b> ✨"
+        ]
     },
     {
         "questions": [
@@ -191,7 +289,10 @@ const conversationFlow = [
             "hey how'are you hare krishna ai",
             "hey how're you hare krishna ai"
         ],
-        "answers": []
+        "answers": [
+            "Hare Krishna! I'm functioning smoothly and ready to help! <b>How are you doing?</b> 👍",
+            "Hare Krishna! I'm doing well. I hope your day is filled with joy! <b>What brings you to me today?</b> 💬"
+        ]
     },
     {
         "questions": [
@@ -199,7 +300,10 @@ const conversationFlow = [
             "yo how'is you hare krishna ai",
             "yo, how's you hare krishna ai"
         ],
-        "answers": []
+        "answers": [
+            "Hare Krishna! I am well, thank you! <b>How are you?</b> 😊",
+            "Hare Krishna! Everything is excellent here. <b>What's up?</b> 👀"
+        ]
     },
     {
         "questions": [
@@ -208,7 +312,10 @@ const conversationFlow = [
             "hi how'are you ai hare krishna",
             "hi how're you ai hare krishna"
         ],
-        "answers": []
+        "answers": [
+            "Hare Krishna! I'm doing very well, thank you for your kindness! <b>How is your day?</b> ☀️",
+            "Hare Krishna! I'm ready to assist you. I hope you are having a wonderful day! <b>What can I do for you?</b> 💡"
+        ]
     },
     {
         "questions": [
@@ -217,7 +324,10 @@ const conversationFlow = [
             "hey how'are you ai hare krishna",
             "hey how're you ai hare krishna"
         ],
-        "answers": []
+        "answers": [
+            "Hare Krishna! I'm doing great, ready to chat and help! <b>How are things with you?</b> 🤝",
+            "Hare Krishna! All is well. It's a pleasure to connect. <b>What can I help you with today?</b> ✨"
+        ]
     },
     {
         "questions": [
@@ -225,280 +335,418 @@ const conversationFlow = [
             "yo how'is you ai hare krishna",
             "yo, how's you ai hare krishna"
         ],
-        "answers": []
+        "answers": [
+            "Hare Krishna! I'm doing fine, thanks for asking! <b>How are you?</b> 👍",
+            "Hare Krishna! Everything's excellent. <b>What's up?</b> 💬"
+        ]
     },
     {
         "questions": [
             "how r u"
         ],
-        "answers": []
+        "answers": [
+            "I'm doing well, thanks for the short form! <b>How are you?</b> 😊",
+            "Great! Ready to help. <b>What about you?</b> 💡"
+        ]
     },
     {
         "questions": [
             "how r y"
         ],
-        "answers": []
+        "answers": [
+            "I'm doing well, thank you for asking! <b>How are you?</b> 👍",
+            "All good here! <b>What's on your mind?</b> 🤔"
+        ]
     },
     {
         "questions": [
             "how r you"
         ],
-        "answers": []
+        "answers": [
+            "I'm doing well, thank you! <b>What can I do for you?</b> 🤝",
+            "I'm ready to assist! <b>How are you?</b> 🤖"
+        ]
     },
     {
         "questions": [
             "how are u"
         ],
-        "answers": []
+        "answers": [
+            "I'm doing well, thank you! <b>What's up?</b> 👀",
+            "Great! Ready to go. <b>How's your day?</b> 🗓️"
+        ]
     },
     {
         "questions": [
             "yo how r y"
         ],
-        "answers": []
+        "answers": [
+            "Yo! I'm doing great! <b>How's your day?</b> ☀️",
+            "Yo! All good here. <b>What's happening?</b> 👋"
+        ]
     },
     {
         "questions": [
             "yo how r u"
         ],
-        "answers": []
+        "answers": [
+            "Yo! I'm doing fine, thanks! <b>How are you?</b> 😊",
+            "Yo! Ready to chat. <b>What's new?</b> 💬"
+        ]
     },
     {
         "questions": [
             "yo how are y"
         ],
-        "answers": []
+        "answers": [
+            "Yo! I'm doing well, thanks! <b>And you?</b> 👍",
+            "Yo! All systems nominal. <b>How are you?</b> 🤖"
+        ]
     },
     {
         "questions": [
             "yo how are u"
         ],
-        "answers": []
+        "answers": [
+            "Yo! I'm great! <b>What's up with you?</b> 👀",
+            "Yo! Functioning perfectly. <b>How's your day going?</b> 🗓️"
+        ]
     },
     {
         "questions": [
             "yo how r you"
         ],
-        "answers": []
+        "answers": [
+            "Yo! I'm doing well, thank you! <b>What can I do for you?</b> 💡",
+            "Yo! Ready for anything. <b>How are you?</b> 💪"
+        ]
     },
     {
         "questions": [
             "hi r u"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I am well! <b>How are you?</b> 😊",
+            "Hi! Great, thanks! <b>What's on your mind?</b> 🤔"
+        ]
     },
     {
         "questions": [
             "hi r y"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm doing well! <b>And how are things with you?</b> 🏡",
+            "Hi! All good here. <b>What can I assist you with?</b> 🤝"
+        ]
     },
     {
         "questions": [
             "hi r you"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm doing great, thank you! <b>How are you?</b> 👍",
+            "Hi! All well. <b>What brings you here?</b> 💬"
+        ]
     },
     {
         "questions": [
             "hi are y"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm well, thanks for asking! <b>How are you?</b> 🌟",
+            "Hello! I'm ready to help. <b>What's up?</b> 👀"
+        ]
     },
     {
         "questions": [
             "hi are u"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm doing well! <b>How's your day been?</b> ☀️",
+            "Hi! Functioning perfectly. <b>What can I do?</b> 💡"
+        ]
     },
     {
         "questions": [
             "hi how r u"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm fine, thanks! <b>How are you doing?</b> 😊",
+            "Hello! All good here. <b>What do you need?</b> 🤝"
+        ]
     },
     {
         "questions": [
             "hi how r y"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm doing well, thanks! <b>How are things with you?</b> 🌍",
+            "Hi! Great! <b>What's new?</b> 🌟"
+        ]
     },
     {
         "questions": [
             "hi how r you"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm doing great, thank you! <b>How's your day going?</b> 🗓️",
+            "Hello! Ready to assist. <b>What can I help you with?</b> 🤖"
+        ]
     },
     {
         "questions": [
             "hi how are y"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm well! <b>And you?</b> 👍",
+            "Hi! All good! <b>What's on your mind?</b> 🤔"
+        ]
     },
     {
         "questions": [
             "hi how are u"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm well, thank you! <b>How are you today?</b> ☀️",
+            "Hello! Functioning perfectly. <b>What's up?</b> 👀"
+        ]
     },
     {
         "questions": [
             "hey r y"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing well! <b>And you?</b> 🤝",
+            "Hey! Great! <b>What can I help you with?</b> 💡"
+        ]
     },
     {
         "questions": [
             "hey r u"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm fine, thanks! <b>How are you?</b> 😊",
+            "Hey! All good here. <b>What's happening?</b> 💬"
+        ]
     },
     {
         "questions": [
             "hey are u"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing great! <b>How's your day been?</b> 🗓️",
+            "Hey! Functioning perfectly. <b>What can I do for you?</b> 🤖"
+        ]
     },
     {
         "questions": [
             "hey are y"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm well, thanks! <b>How are you?</b> 👍",
+            "Hey! Ready to go. <b>What's on your mind?</b> 🤔"
+        ]
     },
     {
         "questions": [
             "hey r you"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing well, thank you! <b>How are you?</b> 🌟",
+            "Hey! All well. <b>What do you need?</b> 💡"
+        ]
     },
     {
         "questions": [
             "hey how r y"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing fine! <b>How are things with you?</b> 🏡",
+            "Hey! Great! <b>What's new?</b> 💬"
+        ]
     },
     {
         "questions": [
             "hey how r u"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm well, thanks! <b>How are you doing?</b> 😊",
+            "Hey! All good here. <b>What can I help you with?</b> 🤝"
+        ]
     },
     {
         "questions": [
             "hey how are u"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing great! <b>How's your day been?</b> ☀️",
+            "Hey! Functioning perfectly. <b>What can I assist you with?</b> 🤖"
+        ]
     },
     {
         "questions": [
             "hey how are y"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm well! <b>And you?</b> 👍",
+            "Hey! All good! <b>What's up?</b> 👀"
+        ]
     },
     {
         "questions": [
             "hey how r you"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing great, thank you! <b>How are you?</b> 🌟",
+            "Hey! Ready to assist. <b>What do you need?</b> 💡"
+        ]
     },
     {
         "questions": [
             "hru"
         ],
-        "answers": []
+        "answers": [
+            "I'm doing well, thanks for asking! <b>What about you?</b> 💬",
+            "Great! Ready to help. <b>What's up?</b> 👀"
+        ]
     },
     {
         "questions": [
             "hi how r u ai"
         ],
-        "answers": []
+        "answers": [
+            "Hi! This AI is doing great, thanks for asking! <b>How are you?</b> 😊",
+            "Hello! I'm operating perfectly. <b>What can I help you with?</b> 💡"
+        ]
     },
     {
         "questions": [
             "hi how r y ai"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm doing well, thank you! <b>How are you?</b> 👍",
+            "Hello! All systems nominal. <b>What's on your mind?</b> 🤔"
+        ]
     },
     {
         "questions": [
             "hi how r you ai"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm doing great, thanks! <b>How are you?</b> 🌟",
+            "Hello! Ready to assist. <b>What can I do for you?</b> 🤝"
+        ]
     },
     {
         "questions": [
             "hi how are y ai"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm well, thank you! <b>And how are things with you?</b> 🏡",
+            "Hello! I'm here and ready. <b>What do you need?</b> 💬"
+        ]
     },
     {
         "questions": [
             "hi how are u ai"
         ],
-        "answers": []
+        "answers": [
+            "Hi! I'm doing great! <b>How's your day been?</b> ☀️",
+            "Hello! Functioning perfectly. <b>What's up?</b> 👀"
+        ]
     },
     {
         "questions": [
             "hey r y ai"
         ],
-        "answers": []
+        "answers": [
+            "Hey! This AI is doing well! <b>And you?</b> 👍",
+            "Hey! Great! <b>What can I help you with?</b> 💡"
+        ]
     },
     {
         "questions": [
             "hey r u ai"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm fine, thanks for checking on the AI! <b>How are you?</b> 😊",
+            "Hey! All good here. <b>What's happening?</b> 💬"
+        ]
     },
     {
         "questions": [
             "hey are u ai"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing great! <b>How's your day?</b> 🗓️",
+            "Hey! Functioning perfectly. <b>What can I do for you?</b> 🤖"
+        ]
     },
     {
         "questions": [
             "hey are y ai"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm well, thanks! <b>How are you?</b> 🌟",
+            "Hey! Ready to go. <b>What's on your mind?</b> 🤔"
+        ]
     },
     {
         "questions": [
             "hey r you ai"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing well, thank you! <b>How are you?</b> 👍",
+            "Hey! All well. <b>What do you need?</b> 💡"
+        ]
     },
     {
         "questions": [
             "hey how r y ai"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing fine! <b>How are things with you?</b> 🏡",
+            "Hey! Great! <b>What's new?</b> 💬"
+        ]
     },
     {
         "questions": [
             "hey how r u ai"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm well, thanks for asking the AI! <b>How are you doing?</b> 😊",
+            "Hey! All good here. <b>What can I help you with?</b> 🤝"
+        ]
     },
     {
         "questions": [
             "hey how are u ai"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing great! <b>How's your day been?</b> ☀️",
+            "Hey! Functioning perfectly. <b>What can I assist you with?</b> 🤖"
+        ]
     },
     {
         "questions": [
             "hey how are y ai"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm well! <b>And you?</b> 👍",
+            "Hey! All good! <b>What's up?</b> 👀"
+        ]
     },
     {
         "questions": [
             "hey how r you ai"
         ],
-        "answers": []
+        "answers": [
+            "Hey! I'm doing great, thank you! <b>How are you?</b> 🌟",
+            "Hey! Ready to assist. <b>What do you need?</b> 💡"
+        ]
     },
     {
-        "questions": ["hi", "hello", "hey"],
+        "questions": ["hi","hello", "hey"],
         "answers": [
             "Hello! 👋 How’s your day going?",
             "Hi there! 😊 Ready to explore some thing new today?",
@@ -1696,198 +1944,198 @@ GPT-5 (2024/2025) → Latest and most advanced, more reliable and reasoning-focu
   }
 ];
 
-// --- Memory & Storage Variables ---    
-let userMemory = loadMemory();    
-let chatHistory = loadChatHistory();    
-let responsePointers = loadResponsePointers();     
-let lastIntentKey = localStorage.getItem('lastIntentKey') || null;    
-    
-// --- Synonyms (kept but not used in the core logic now) ---    
-const synonyms = {}; // Keeping this empty for now to simplify fuzzy matching    
-    
-const chatbox = document.getElementById('chatbox');    
-const userInput = document.getElementById('userInput');    
-const sendBtn = document.getElementById('sendBtn');    
-// --- Memory & Storage Functions ---    
-function saveMemory() { localStorage.setItem('userMemory', JSON.stringify(userMemory)); }    
-function loadMemory() { const saved = localStorage.getItem('userMemory'); return saved ? JSON.parse(saved) : {}; }    
-    
-function saveChatHistory() { localStorage.setItem('chatHistory', JSON.stringify(chatHistory)); }    
-function loadChatHistory() { const saved = localStorage.getItem('chatHistory'); return saved ? JSON.parse(saved) : []; }    
-    
-function saveResponsePointers() {    
-    localStorage.setItem('responsePointers', JSON.stringify(responsePointers));    
-}    
-function loadResponsePointers() {    
-    const saved = localStorage.getItem('responsePointers');    
-    return saved ? JSON.parse(saved) : {};    
-}    
-// Stores the unique key (first question) of the last intent used    
-function setLastIntentKey(key) {    
-    lastIntentKey = key;    
-    localStorage.setItem('lastIntentKey', key);    
-}    
-    
-// --- Utility Functions ---    
-    
-// Add message to DOM and history    
-function addMessage(msg, sender, save = true) {    
-    const message = document.createElement('div');    
-    message.classList.add('message', sender);    
-    message.innerHTML = msg; // ✅ render HTML properly    
-    chatbox.appendChild(message);    
-    chatbox.scrollTop = chatbox.scrollHeight;    
-    if (save) {    
-        chatHistory.push({ sender, text: msg });    
-        saveChatHistory();    
-    }    
-}    
-    
-// Input cleaning    
-function cleanInput(input) {    
-    return input.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim().replace(/\s+/g, ' ');     
-}    
-    
-// Levenshtein Distance for fuzzy matching    
-function levenshtein(a, b) {    
-    const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);    
-    matrix[0] = Array.from({ length: a.length + 1 }, (_, j) => j);    
-    for (let i = 1; i <= b.length; i++) {    
-        for (let j = 1; j <= a.length; j++) {    
-            matrix[i][j] = b[i - 1] === a[j - 1]    
-                ? matrix[i - 1][j - 1]    
-                : Math.min(matrix[i-1][j-1] + 1, matrix[i][j-1] + 1, matrix[i-1][j] + 1);    
-        }    
-    }    
-    return matrix[b.length][a.length];    
-}    
-    
-// Update user memory for personalization (e.g., matching a name)    
-function updateMemory(input) {    
-    const nameMatch = input.match(/my name is (\w+)/i);    
-    if (nameMatch) { userMemory.name = nameMatch[1]; saveMemory(); }    
-}    
-    
-// Personalize response    
-function personalizeResponse(resp) {    
-    if (userMemory.name) resp = resp.replace(/\buser\b/gi, userMemory.name);    
-    return resp;    
-}    
-// --- New Core Logic Functions ---    
-    
-/**    
- * Searches the conversationFlow array for an intent matching the input.    
- * @param {string} input - The cleaned user input.    
- * @param {boolean} fuzzy - Whether to allow fuzzy matching.    
- * @returns {object | null} The matching intent object (e.g., {questions: [...], answers: [...]}) or null.    
- */    
-function findIntentKey(input, fuzzy = true) {    
-    let bestMatchIntent = null;    
-    let bestScore = Infinity;    
-    
-    for (const intent of conversationFlow) {    
-        // 1. Exact Match Check    
-        if (intent.questions.map(cleanInput).includes(input)) {    
-            // Return immediately on exact match for speed    
-            return intent;    
-        }    
-    
-        // 2. Fuzzy Match Check    
-        if (fuzzy) {    
-            for (const key of intent.questions) {    
-                const keyClean = cleanInput(key);    
-                // Adjust the 0.5 threshold for desired fuzziness.    
-                const distance = levenshtein(input, keyClean);    
-                    
-                if (distance < bestScore && distance <= Math.max(input.length, keyClean.length) * 0.5) {    
-                    bestScore = distance;    
-                    bestMatchIntent = intent;    
-                }    
-            }    
-        }    
-    }    
-    
-    return bestMatchIntent;    
-}    
-    
-// Cycles through response variants    
-function getNextForKey(intentObject) {    
-    // We use the first question in the array as the unique key for storage/pointers    
-    const storageKey = intentObject.questions[0].toLowerCase();    
-    const arr = intentObject.answers;    
-        
-    const idx = responsePointers[storageKey] || 0;    
-    const resp = arr[idx % arr.length];    
-        
-    responsePointers[storageKey] = (idx + 1) % arr.length;    
-    saveResponsePointers();    
-    setLastIntentKey(storageKey); // Store the unique intent key for "next" functionality    
-        
-    return personalizeResponse(resp);    
-}    
-    
-// Returns all response variants for "show all" command    
-function getAllForKey(intentObject) {    
-    const storageKey = intentObject.questions[0].toLowerCase();    
-    const arr = intentObject.answers;    
-    const text = arr.map((r,i) => `${i+1}. ${r}`).join('\n\n');     
-    setLastIntentKey(storageKey);    
-    return personalizeResponse(text);    
-}    
-    
-// --- Main Chatbot Logic ---    
-    
-function getAIResponse(rawInput) {    
-    const input = cleanInput(rawInput);    
-    updateMemory(input);    
-    
-    const low = rawInput.toLowerCase();    
-    const wantsAll = /\b(step|steps|step by step|list|all|every|show)\b/.test(low);    
-    const wantsNext = /\b(next|more|another|again)\b/.test(low);    
-    
-    if (wantsNext && lastIntentKey) {    
-        // Find the original intent using the stored key    
-        const lastIntent = conversationFlow.find(intent => intent.questions[0].toLowerCase() === lastIntentKey);    
-        if (lastIntent) {    
-            return getNextForKey(lastIntent);    
-        }    
-    }    
-    
-    // 1. Find best intent match (exact or fuzzy)    
-    const matchingIntent = findIntentKey(input, true);    
-    
-    if (matchingIntent) {    
-        return wantsAll ? getAllForKey(matchingIntent) : getNextForKey(matchingIntent);    
-    } else {    
-        // 2. Default fallback (always the last item in the array)    
-        return getNextForKey(conversationFlow[conversationFlow.length - 1]);    
-    }    
-}    
-    
-    
-// --- Unified Send Message Function ---    
-    
-function handleSendMessage() {    
-    const text = userInput.value.trim();    
-    if (!text) return;    
-    
-    addMessage(text, 'user');    
-    userInput.value = '';    
-        
-    // Disable input and button while AI is "typing"    
-    userInput.disabled = true;    
-    sendBtn.disabled = true;    
-    
-    // Simulate AI thinking time    
-    setTimeout(() => {     
-        addMessage(getAIResponse(text), 'ai');     
-            
-        // Re-enable input and button    
-        userInput.disabled = false;    
-        sendBtn.disabled = false;    
-        userInput.focus();     
-    }, 100);    
-}    
+// --- Memory & Storage Variables ---
+let userMemory = loadMemory();
+let chatHistory = loadChatHistory();
+let responsePointers = loadResponsePointers();
+let lastIntentKey = localStorage.getItem('lastIntentKey') || null;
+
+// --- Synonyms (kept but not used in the core logic now) ---
+const synonyms = {}; // Keeping this empty for now to simplify fuzzy matching
+
+const chatbox = document.getElementById('chatbox');
+const userInput = document.getElementById('userInput');
+const sendBtn = document.getElementById('sendBtn');
+// --- Memory & Storage Functions ---
+function saveMemory() { localStorage.setItem('userMemory', JSON.stringify(userMemory)); }
+function loadMemory() { const saved = localStorage.getItem('userMemory'); return saved ? JSON.parse(saved) : {}; }
+
+function saveChatHistory() { localStorage.setItem('chatHistory', JSON.stringify(chatHistory)); }
+function loadChatHistory() { const saved = localStorage.getItem('chatHistory'); return saved ? JSON.parse(saved) : []; }
+
+function saveResponsePointers() {
+    localStorage.setItem('responsePointers', JSON.stringify(responsePointers));
+}
+function loadResponsePointers() {
+    const saved = localStorage.getItem('responsePointers');
+    return saved ? JSON.parse(saved) : {};
+}
+// Stores the unique key (first question) of the last intent used
+function setLastIntentKey(key) {
+    lastIntentKey = key;
+    localStorage.setItem('lastIntentKey', key);
+}
+
+// --- Utility Functions ---
+
+// Add message to DOM and history
+function addMessage(msg, sender, save = true) {
+    const message = document.createElement('div');
+    message.classList.add('message', sender);
+    message.innerHTML = msg; // ✅ render HTML properly
+    chatbox.appendChild(message);
+    chatbox.scrollTop = chatbox.scrollHeight;
+    if (save) {
+        chatHistory.push({ sender, text: msg });
+        saveChatHistory();
+    }
+}
+
+// Input cleaning
+function cleanInput(input) {
+    return input.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim().replace(/\s+/g, ' ');
+}
+
+// Levenshtein Distance for fuzzy matching
+function levenshtein(a, b) {
+    const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
+    matrix[0] = Array.from({ length: a.length + 1 }, (_, j) => j);
+    for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+            matrix[i][j] = b[i - 1] === a[j - 1]
+                ? matrix[i - 1][j - 1]
+                : Math.min(matrix[i-1][j-1] + 1, matrix[i][j-1] + 1, matrix[i-1][j] + 1);
+        }
+    }
+    return matrix[b.length][a.length];
+}
+
+// Update user memory for personalization (e.g., matching a name)
+function updateMemory(input) {
+    const nameMatch = input.match(/my name is (\w+)/i);
+    if (nameMatch) { userMemory.name = nameMatch[1]; saveMemory(); }
+}
+
+// Personalize response
+function personalizeResponse(resp) {
+    if (userMemory.name) resp = resp.replace(/\buser\b/gi, userMemory.name);
+    return resp;
+}
+// --- New Core Logic Functions ---
+
+/**
+ * Searches the conversationFlow array for an intent matching the input.
+ * @param {string} input - The cleaned user input.
+ * @param {boolean} fuzzy - Whether to allow fuzzy matching.
+ * @returns {object | null} The matching intent object (e.g., {questions: [...], answers: [...]}) or null.
+ */
+function findIntentKey(input, fuzzy = true) {
+    let bestMatchIntent = null;
+    let bestScore = Infinity;
+
+    for (const intent of conversationFlow) {
+        // 1. Exact Match Check
+        if (intent.questions.map(cleanInput).includes(input)) {
+            // Return immediately on exact match for speed
+            return intent;
+        }
+
+        // 2. Fuzzy Match Check
+        if (fuzzy) {
+            for (const key of intent.questions) {
+                const keyClean = cleanInput(key);
+                // Adjust the 0.5 threshold for desired fuzziness.
+                const distance = levenshtein(input, keyClean);
+
+                if (distance < bestScore && distance <= Math.max(input.length, keyClean.length) * 0.5) {
+                    bestScore = distance;
+                    bestMatchIntent = intent;
+                }
+            }
+        }
+    }
+
+    return bestMatchIntent;
+}
+
+// Cycles through response variants
+function getNextForKey(intentObject) {
+    // We use the first question in the array as the unique key for storage/pointers
+    const storageKey = intentObject.questions[0].toLowerCase();
+    const arr = intentObject.answers;
+
+    const idx = responsePointers[storageKey] || 0;
+    const resp = arr[idx % arr.length];
+
+    responsePointers[storageKey] = (idx + 1) % arr.length;
+    saveResponsePointers();
+    setLastIntentKey(storageKey); // Store the unique intent key for "next" functionality
+
+    return personalizeResponse(resp);
+}
+
+// Returns all response variants for "show all" command
+function getAllForKey(intentObject) {
+    const storageKey = intentObject.questions[0].toLowerCase();
+    const arr = intentObject.answers;
+    const text = arr.map((r,i) => `${i+1}. ${r}`).join('\n\n');
+    setLastIntentKey(storageKey);
+    return personalizeResponse(text);
+}
+
+// --- Main Chatbot Logic ---
+
+function getAIResponse(rawInput) {
+    const input = cleanInput(rawInput);
+    updateMemory(input);
+
+    const low = rawInput.toLowerCase();
+    const wantsAll = /\b(step|steps|step by step|list|all|every|show)\b/.test(low);
+    const wantsNext = /\b(next|more|another|again)\b/.test(low);
+
+    if (wantsNext && lastIntentKey) {
+        // Find the original intent using the stored key
+        const lastIntent = conversationFlow.find(intent => intent.questions[0].toLowerCase() === lastIntentKey);
+        if (lastIntent) {
+            return getNextForKey(lastIntent);
+        }
+    }
+
+    // 1. Find best intent match (exact or fuzzy)
+    const matchingIntent = findIntentKey(input, true);
+
+    if (matchingIntent) {
+        return wantsAll ? getAllForKey(matchingIntent) : getNextForKey(matchingIntent);
+    } else {
+        // 2. Default fallback (always the last item in the array)
+        return getNextForKey(conversationFlow[conversationFlow.length - 1]);
+    }
+}
+
+
+// --- Unified Send Message Function ---
+
+function handleSendMessage() {
+    const text = userInput.value.trim();
+    if (!text) return;
+
+    addMessage(text, 'user');
+    userInput.value = '';
+
+    // Disable input and button while Jay Sri Krishna AI is "typing"
+    userInput.disabled = true;
+    sendBtn.disabled = true;
+
+    // Simulate Jay Sri Krishna AI thinking time
+    setTimeout(() => {
+        addMessage(getAIResponse(text), 'ai');
+
+        // Re-enable input and button
+        userInput.disabled = false;
+        sendBtn.disabled = false;
+        userInput.focus();
+    }, 100);
+}
  // --- MENU UTILITY FUNCTIONS ---
 
 function toggleMenu() {
@@ -1899,21 +2147,21 @@ function handleNewChat() {
     // Completely clears all local storage data and reloads the page
     // providing a fresh, new start.
     localStorage.clear();
-    location.reload(); 
+    location.reload();
 }
 
 function handleClearChat() {
     // Clear the DOM chatbox
     document.getElementById('chatbox').innerHTML = '';
-    
+
     // Clear the stored history
     chatHistory = [];
     saveChatHistory();
-    
+
     // Optionally reset other conversation state if needed
     localStorage.removeItem('responsePointers');
     localStorage.removeItem('lastIntentKey');
-    
+
     toggleMenu();
 }
 
@@ -1928,17 +2176,17 @@ function handleExportChat() {
     exportHeader.innerHTML = `Chat Export - ${dateTimeString}`;
 
     const chatbox = document.getElementById('chatbox');
-    
+
     // 3. Temporarily prepend the header to the chatbox
     chatbox.prepend(exportHeader);
-    
+
     // 4. Trigger the browser's print function
     window.print();
 
     // 5. Remove the temporary header after the print function is called
     setTimeout(() => {
         exportHeader.remove();
-    }, 100); 
+    }, 100);
 
     toggleMenu();
 }
@@ -1979,14 +2227,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-   
-    
-// --- Event Listeners and Initialization ---    
-    
-// 1. Initial Render of chat history    
-chatHistory.forEach(entry => addMessage(entry.text, entry.sender, false));    
-sendBtn.addEventListener('click', handleSendMessage);    
-// --- Reset response pointer if not working ---    
-if (!localStorage.getItem('responsePointers')) {    
-  localStorage.setItem('responsePointers', JSON.stringify({}));    
+
+
+// --- Event Listeners and Initialization ---
+
+// 1. Initial Render of chat history
+chatHistory.forEach(entry => addMessage(entry.text, entry.sender, false));
+sendBtn.addEventListener('click', handleSendMessage);
+// --- Reset response pointer if not working ---
+if (!localStorage.getItem('responsePointers')) {
+  localStorage.setItem('responsePointers', JSON.stringify({}));
 }
