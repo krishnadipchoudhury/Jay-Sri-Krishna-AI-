@@ -1953,7 +1953,7 @@ GPT-5 (2024/2025) → Latest and most advanced, more reliable and reasoning-focu
   // --- Geography of India---
   {
   "questions": ["What is the area of India?"],
-  "answers": ["The area of India is, <b>approximately 3.287 million square kilometres (~3,287,263 km²) in total.</b>\n\n<b>🧠 Here is a Quick Facts File:</b>\n\n<b>• Land area: ~2,973,190 km²</b>\n<b>• Water area: ~314,073 km²</b>\n<b>• From North to South: ~3,214 km (from Kashmir in the extreme North ⬆️ to Kanyakumari in the extreme South ⬇️)</b>\n<b>• From East to West: ~2,933 km (from Arunachal Pradesh in the extreme East ➡️ to Gujarat in the extreme West ⬅️)</b>"]
+  "answers": ["The area of India is, <b>approximately 3.287 million square kilometres (~3,287,263 km²) in total.</b>\n\n<b>🧠 Here is a Quick Facts File:</b>\n\n<b>• Land area: ~2,973,190 km²</b>\n<b>• Water area: ~314,073 km²</b>\n<b>• From North to South: ~3,214 km (from Kashmir in the extreme North ⬆️ to Kanyakumari in the extreme South ⬇️)</b>\n<b>• From East to West: ~2,933 km (from Arunachal Pradesh in the extreme East ➡️ to Gujarat in the extreme West ⬅️)</b>\n\n<b>That's make it the Seveth largest country in the world 🌎 (following Russia,Canada, China, Brazil and Australia"]
 }
 ];
 
