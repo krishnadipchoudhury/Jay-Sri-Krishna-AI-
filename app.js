@@ -1963,13 +1963,30 @@ const synonyms = {}; // Keeping this empty for now to simplify fuzzy matching
 const chatbox = document.getElementById('chatbox');
 const userInput = document.getElementById('userInput');
 const sendBtn = document.getElementById('sendBtn');
+
+// --- Utility for getting 100% correct timestamp (New Function) ---
+function getFullTimestamp(date) {
+    return date.toLocaleString('en-US', {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    });
+}
+
 // --- Memory & Storage Functions ---
-function saveMemory() { localStorage.setItem('userMemory', JSON.stringify(userMemory)); }
-function loadMemory() { const saved = localStorage.getItem('userMemory'); return saved ? JSON.parse(saved) : {}; }
-
-function saveChatHistory() { localStorage.setItem('chatHistory', JSON.stringify(chatHistory)); }
-function loadChatHistory() { const saved = localStorage.getItem('chatHistory'); return saved ? JSON.parse(saved) : []; }
-
+function saveMemory() {
+    localStorage.setItem('userMemory', JSON.stringify(userMemory));
+}
+function loadMemory() {
+    const saved = localStorage.getItem('userMemory');
+    return saved ? JSON.parse(saved) : {};
+}
+function saveChatHistory() {
+    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+}
+function loadChatHistory() {
+    const saved = localStorage.getItem('chatHistory');
+    return saved ? JSON.parse(saved) : [];
+}
 function saveResponsePointers() {
     localStorage.setItem('responsePointers', JSON.stringify(responsePointers));
 }
@@ -1977,6 +1994,7 @@ function loadResponsePointers() {
     const saved = localStorage.getItem('responsePointers');
     return saved ? JSON.parse(saved) : {};
 }
+
 // Stores the unique key (first question) of the last intent used
 function setLastIntentKey(key) {
     lastIntentKey = key;
@@ -1984,21 +2002,40 @@ function setLastIntentKey(key) {
 }
 
 // --- Utility Functions ---
+// Add message to DOM and history (Modified to include time)
+function addMessage(msg, sender, save = true, providedTime = null) {
+    const now = providedTime ? new Date(providedTime) : new Date();
+    const fullTimeString = getFullTimestamp(now); // 100% correct time
+    const displayTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 
-// Add message to DOM and history
-function addMessage(msg, sender, save = true) {
     const message = document.createElement('div');
     message.classList.add('message', sender);
-    message.innerHTML = msg; // ✅ render HTML properly
+    
+    // 1. Text content
+    const textContent = document.createElement('div');
+    textContent.classList.add('message-text');
+    textContent.innerHTML = msg; // ✅ render HTML properly
+
+    // 2. Timestamp element (New)
+    const timeSpan = document.createElement('span');
+    timeSpan.classList.add('timestamp');
+    timeSpan.setAttribute('data-time', fullTimeString); // Store full time for print/export
+    timeSpan.textContent = displayTime; // Display simple time on screen
+
+    message.appendChild(textContent);
+    message.appendChild(timeSpan);
+    
     chatbox.appendChild(message);
     chatbox.scrollTop = chatbox.scrollHeight;
+
     if (save) {
-        chatHistory.push({ sender, text: msg });
+        // Store the full timestamp in history
+        chatHistory.push({ sender, text: msg, timestamp: fullTimeString });
         saveChatHistory();
     }
 }
 
-// Input cleaning
+// Input cleaning function
 function cleanInput(input) {
     return input.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim().replace(/\s+/g, ' ');
 }
@@ -2007,31 +2044,23 @@ function cleanInput(input) {
 function levenshtein(a, b) {
     const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
     matrix[0] = Array.from({ length: a.length + 1 }, (_, j) => j);
+
     for (let i = 1; i <= b.length; i++) {
         for (let j = 1; j <= a.length; j++) {
-            matrix[i][j] = b[i - 1] === a[j - 1]
-                ? matrix[i - 1][j - 1]
-                : Math.min(matrix[i-1][j-1] + 1, matrix[i][j-1] + 1, matrix[i-1][j] + 1);
+            const cost = a[j - 1] === b[i - 1] ? 0 : 1;
+            matrix[i][j] = Math.min(
+                matrix[i - 1][j] + 1,      // Deletion
+                matrix[i][j - 1] + 1,      // Insertion
+                matrix[i - 1][j - 1] + cost // Substitution
+            );
         }
     }
+
     return matrix[b.length][a.length];
 }
 
-// Update user memory for personalization (e.g., matching a name)
-function updateMemory(input) {
-    const nameMatch = input.match(/my name is (\w+)/i);
-    if (nameMatch) { userMemory.name = nameMatch[1]; saveMemory(); }
-}
-
-// Personalize response
-function personalizeResponse(resp) {
-    if (userMemory.name) resp = resp.replace(/\buser\b/gi, userMemory.name);
-    return resp;
-}
-// --- New Core Logic Functions ---
-
 /**
- * Searches the conversationFlow array for an intent matching the input.
+ * Finds the best matching intent from the conversationFlow.
  * @param {string} input - The cleaned user input.
  * @param {boolean} fuzzy - Whether to allow fuzzy matching.
  * @returns {object | null} The matching intent object (e.g., {questions: [...], answers: [...]}) or null.
@@ -2041,13 +2070,13 @@ function findIntentKey(input, fuzzy = true) {
     let bestScore = Infinity;
 
     for (const intent of conversationFlow) {
-        // 1. Exact Match Check
+        // 1. Exact Match
         if (intent.questions.map(cleanInput).includes(input)) {
             // Return immediately on exact match for speed
             return intent;
         }
 
-        // 2. Fuzzy Match Check
+        // 2. Fuzzy Match
         if (fuzzy) {
             for (const key of intent.questions) {
                 const keyClean = cleanInput(key);
@@ -2061,7 +2090,6 @@ function findIntentKey(input, fuzzy = true) {
             }
         }
     }
-
     return bestMatchIntent;
 }
 
@@ -2070,14 +2098,11 @@ function getNextForKey(intentObject) {
     // We use the first question in the array as the unique key for storage/pointers
     const storageKey = intentObject.questions[0].toLowerCase();
     const arr = intentObject.answers;
-
     const idx = responsePointers[storageKey] || 0;
     const resp = arr[idx % arr.length];
-
     responsePointers[storageKey] = (idx + 1) % arr.length;
     saveResponsePointers();
     setLastIntentKey(storageKey); // Store the unique intent key for "next" functionality
-
     return personalizeResponse(resp);
 }
 
@@ -2090,8 +2115,20 @@ function getAllForKey(intentObject) {
     return personalizeResponse(text);
 }
 
-// --- Main Chatbot Logic ---
+// Applies custom memory/context to a response
+function personalizeResponse(response) {
+    // Add logic here to replace placeholders in the response with userMemory data
+    // Example: response = response.replace("[USER_NAME]", userMemory.name || "friend");
+    return response;
+}
 
+// Updates memory based on new input (e.g., extracting user's name)
+function updateMemory(input) {
+    // Add logic here to extract information from user input and save to userMemory
+}
+
+
+// --- Main Chatbot Logic ---
 function getAIResponse(rawInput) {
     const input = cleanInput(rawInput);
     updateMemory(input);
@@ -2101,49 +2138,60 @@ function getAIResponse(rawInput) {
     const wantsNext = /\b(next|more|another|again)\b/.test(low);
 
     if (wantsNext && lastIntentKey) {
-        // Find the original intent using the stored key
-        const lastIntent = conversationFlow.find(intent => intent.questions[0].toLowerCase() === lastIntentKey);
+        // Find the full intent object using the last key
+        const lastIntent = conversationFlow.find(intent => cleanInput(intent.questions[0]) === lastIntentKey);
         if (lastIntent) {
             return getNextForKey(lastIntent);
         }
     }
 
-    // 1. Find best intent match (exact or fuzzy)
-    const matchingIntent = findIntentKey(input, true);
+    const intent = findIntentKey(input);
 
-    if (matchingIntent) {
-        return wantsAll ? getAllForKey(matchingIntent) : getNextForKey(matchingIntent);
-    } else {
-        // 2. Default fallback (always the last item in the array)
-        return getNextForKey(conversationFlow[conversationFlow.length - 1]);
+    if (intent) {
+        if (wantsAll) {
+            return getAllForKey(intent);
+        } else {
+            return getNextForKey(intent);
+        }
     }
+    
+    // --- Fallback Response: No match found ---
+    return "I'm not quite sure how to respond to that, but I'm always learning! Can you ask me something else? 😊";
 }
 
 
-// --- Unified Send Message Function ---
+// --- Event Handlers ---
 
-function handleSendMessage() {
+function handleSendMessage(e) {
+    // Allow sending on Enter key (but not Shift+Enter for multiline)
+    if (e.type === 'keydown' && e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault(); // Stop the default newline action
+    } else if (e.type === 'keydown') {
+        return; // Only process on Enter keydown, or click event
+    }
+
     const text = userInput.value.trim();
-    if (!text) return;
+    if (text === "") return;
 
+    // 1. Add user message
     addMessage(text, 'user');
     userInput.value = '';
 
-    // Disable input and button while Jay Sri Krishna AI is "typing"
+    // 2. Simulate AI is "typing"
     userInput.disabled = true;
     sendBtn.disabled = true;
 
     // Simulate Jay Sri Krishna AI thinking time
     setTimeout(() => {
         addMessage(getAIResponse(text), 'ai');
-
         // Re-enable input and button
         userInput.disabled = false;
         sendBtn.disabled = false;
         userInput.focus();
     }, 100);
 }
- // --- MENU UTILITY FUNCTIONS ---
+
+// --- MENU UTILITY FUNCTIONS ---
 
 function toggleMenu() {
     const menu = document.getElementById('dropdownMenu');
@@ -2160,49 +2208,52 @@ function handleNewChat() {
 function handleClearChat() {
     // Clear the DOM chatbox
     document.getElementById('chatbox').innerHTML = '';
-
     // Clear the stored history
     chatHistory = [];
     saveChatHistory();
-
     // Optionally reset other conversation state if needed
     localStorage.removeItem('responsePointers');
     localStorage.removeItem('lastIntentKey');
-
     toggleMenu();
 }
 
 function handleExportChat() {
     // 1. Get current date and time
     const now = new Date();
-    const dateTimeString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+    const dateTimeString = getFullTimestamp(now);
 
     // 2. Create the header element (hidden on screen, visible only in PDF via CSS @media print)
     const exportHeader = document.createElement('div');
     exportHeader.classList.add('export-header');
-    exportHeader.innerHTML = `Chat Export - ${dateTimeString}`;
+    
+    // Add custom export details
+    exportHeader.innerHTML = `
+        <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Hare Krishna AI Chat Export</div>
+        <div style="font-size: 12px; opacity: 0.8;">Exported on: ${dateTimeString}</div>
+        <hr style="margin-top: 10px; border: 0; border-top: 1px solid #ccc;">
+    `;
 
-    const chatbox = document.getElementById('chatbox');
+    // 3. Clone the chatbox content for printing
+    const chatboxClone = document.getElementById('chatbox').cloneNode(true);
 
-    // 3. Temporarily prepend the header to the chatbox
-    chatbox.prepend(exportHeader);
+    // 4. Create the content container for printing
+    const printContent = document.createElement('div');
+    printContent.classList.add('print-content-wrapper');
+    printContent.appendChild(exportHeader);
+    printContent.appendChild(chatboxClone);
 
-    // 4. Trigger the browser's print function
+    // 5. Apply print styles and trigger print
+    document.body.appendChild(printContent);
     window.print();
-
-    // 5. Remove the temporary header after the print function is called
-    setTimeout(() => {
-        exportHeader.remove();
-    }, 100);
-
+    document.body.removeChild(printContent);
     toggleMenu();
 }
 
 
-// --- MENU EVENT LISTENERS ---
+// --- Event Listeners and Initialization ---
 
-// Wait for the DOM to be fully loaded before adding listeners to the new elements
 document.addEventListener('DOMContentLoaded', () => {
+
     // 1. Menu Button Toggle
     document.getElementById('menuBtn').addEventListener('click', (e) => {
         e.stopPropagation(); // Prevents immediate closing from body click
@@ -2233,15 +2284,16 @@ document.addEventListener('DOMContentLoaded', () => {
             menu.classList.remove('show');
         }
     });
+
+    // --- Event Listeners and Initialization ---
+
+    // 1. Initial Render of chat history (Modified to pass timestamp)
+    chatHistory.forEach(entry => addMessage(entry.text, entry.sender, false, entry.timestamp));
+    sendBtn.addEventListener('click', handleSendMessage);
+    userInput.addEventListener('keydown', handleSendMessage); // Handle Enter key submission
+    
+    // --- Reset response pointer if not working ---\n
+    if (!localStorage.getItem('responsePointers')) {
+      localStorage.setItem('responsePointers', JSON.stringify({}));
+    }
 });
-
-
-// --- Event Listeners and Initialization ---
-
-// 1. Initial Render of chat history
-chatHistory.forEach(entry => addMessage(entry.text, entry.sender, false));
-sendBtn.addEventListener('click', handleSendMessage);
-// --- Reset response pointer if not working ---
-if (!localStorage.getItem('responsePointers')) {
-  localStorage.setItem('responsePointers', JSON.stringify({}));
-}
