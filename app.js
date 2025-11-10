@@ -1940,7 +1940,43 @@ GPT-5 (2024/2025) → Latest and most advanced, more reliable and reasoning-focu
       "The formula of <b>Oxygen</b> is <b>O₂</b>. 😊\n\n<b>Quick Facts 📚:</b>\n• <b>Name:</b> Oxygen 🧪\n• <b>Symbol:</b> O\n• <b>Atomic number:</b> 8 🔢\n• <b>Formula:</b> O₂ (normal oxygen we breathe)\n• <b>O₃:</b> Ozone — protects us from UV rays ☀️\n• <b>Molecular mass:</b> O₂ = 32 u, O₃ = 48 u ⚖️\n\n<b>Found in:</b>\n• 21% of air 🌍\n• Water (H₂O) 🌊\n• Made by plants in photosynthesis 🌱\n• Found in rocks and minerals like Feldspar, Calcite, and Hematite 🪨"
     ]
   },
+    // --- Geography ---
+  // --- Geography of India---
+  {
+  "questions": ["What is the area of India?"],
+  "answers": ["The area of India is, <b>approximately 3.287 million square kilometres (~3,287,263 km²) in total.</b>\n\n<b>🧠 Here is a Quick Facts File:</b>\n\n<b>• Land area: ~2,973,190 km²</b>\n<b>• Water area: ~314,073 km²</b>\n<b>• From North to South: ~3,214 km (from Kashmir in the extreme North ⬆️ to Kanyakumari in the extreme South ⬇️)</b>\n<b>• From East to West: ~2,933 km (from Arunachal Pradesh in the extreme East ➡️ to Gujarat in the extreme West ⬅️)</b>\n\n<b>That's make it the Seveth largest country in the world 🌎 (following Russia,Canada, China, Brazil and Australia)"]
+},
 
+// --- Space astronautics ---
+{
+"questions": [
+    "what is the full form of isro",
+    "what is full form of isro",
+    "full form isro",
+    "isro full form",
+    "tell me the full for of isro",
+    "write the full form of isro",
+    "send the full form of isro",
+    "send full form isro",
+    "write isro full form",
+    "tell isro full form",
+    "write is isro full form",
+    "tell is isro full form",
+    "send is full form isro",
+    "can you tell me the full form of isro",
+    "please tell me the full form of isro",
+    "please full form isro",
+    "please can you tell me the full form of isro",
+    "you tell me the full form of isro",
+    "tell the full form of isro",
+    "tell the full form isro",
+    "did you can tell me the full form of isro",
+    "did you tell the full form isro",
+    "did you can tell tell the full form isro",
+    "isro full form you please",
+],
+  "answers": ["<b>Indian Space Research Organisation (ISRO)</b> was founded on <b>15 August 1969</b> by <b>Dr. Vikram Sarabhai,</b> the <b>Father of the Indian Space Program.</b> 🚀"]
+  },
   // --- Default Fallback (must be last) ---
   {
     "questions": ["default_fallback"],
@@ -1949,12 +1985,6 @@ GPT-5 (2024/2025) → Latest and most advanced, more reliable and reasoning-focu
       "Hmm, I don’t have information on that yet 😅."
     ]
   },
-  // --- Geography ---
-  // --- Geography of India---
-  {
-  "questions": ["What is the area of India?"],
-  "answers": ["The area of India is, <b>approximately 3.287 million square kilometres (~3,287,263 km²) in total.</b>\n\n<b>🧠 Here is a Quick Facts File:</b>\n\n<b>• Land area: ~2,973,190 km²</b>\n<b>• Water area: ~314,073 km²</b>\n<b>• From North to South: ~3,214 km (from Kashmir in the extreme North ⬆️ to Kanyakumari in the extreme South ⬇️)</b>\n<b>• From East to West: ~2,933 km (from Arunachal Pradesh in the extreme East ➡️ to Gujarat in the extreme West ⬅️)</b>\n\n<b>That's make it the Seveth largest country in the world 🌎 (following Russia,Canada, China, Brazil and Australia)"]
-}
 ];
 
 // --- Memory & Storage Variables ---
