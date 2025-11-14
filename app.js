@@ -1,8 +1,8 @@
 /* --------------------------
-1. Knowledge Base (Original 7 Items Only)
+1. Knowledge Base (Extracted and Combined)
 ---------------------------- */
 const knowledge = [
-  // Original 7 items (India-focused)
+  // Factual Knowledge (Original 7 Items)
   {topic:"India Area", answers:["India covers an area of about 3.287 million square kilometres. This makes it the 7th largest country in the world by land area."], vector:[1,0,0,0,0,0,0]},
   {topic:"India Capital", answers:["The capital of India is New Delhi. It serves as the seat of the government."], vector:[1,0,0,0,0,0,1]},
   {topic:"Uttar Pradesh Population", answers:["Uttar Pradesh has a population of over 240 million people, making it the most populous state in India."], vector:[0,1,0,0,0,0,0]},
@@ -16,6 +16,7 @@ const knowledge = [
 2. Casual conversation and Memory (Preserved)
 ---------------------------- */
 const casualResponses = [
+  // Casual Responses (Extracted)
   {keywords:["hi","hello","hey"], responses:["Hello! How’s it going?","Hey! What’s up?"]},
   {keywords:["how are you"], responses:["I am fine, thanks! How are you?"]},
   {keywords:["thank you","thanks"], responses:["You’re welcome!","Anytime!"]}
@@ -31,7 +32,7 @@ function learnNewInfo(key,value){
 function validateName(name){return /^[a-zA-Z\s\-]{1,50}$/.test(name);} 
 
 /* --------------------------
-3. Core AI Logic (Vector Matching)
+3. Core AI Logic (Vector Matching & Realism)
 ---------------------------- */
 function sentenceToVector(sentence){
   sentence = sentence.toLowerCase();
@@ -46,10 +47,20 @@ function sentenceToVector(sentence){
   return vec;
 }
 function cosine(a,b){let dot=0,na=0,nb=0;for(let i=0;i<a.length;i++){dot+=a[i]*b[i];na+=a[i]*a[i];nb+=b[i]*b[i];}return dot/(Math.sqrt(na)*Math.sqrt(nb)+Math.sqrt(nb)*0.0001);}
+
+/**
+ * Enhanced Realism Logic: Rewrites the answer based on the user's question's tone (capitalization).
+ */
 function rewriteAnswer(text,userQuestion){
-  if(userQuestion===userQuestion.toUpperCase()) text=text.toUpperCase();
-  else text=text.charAt(0).toUpperCase()+text.slice(1);
-  return text.replace(/\s+/g, ' ').trim();
+  // If the user's entire question is uppercase (YELLING/emphatic), use uppercase for the answer.
+  if(userQuestion===userQuestion.toUpperCase() && userQuestion.length > 5) {
+      text=text.toUpperCase();
+  }
+  // Otherwise, ensure the answer starts with a capital letter (standard sentence case).
+  else {
+      text=text.charAt(0).toUpperCase()+text.slice(1);
+  }
+  return text.replace(/\s+/g, ' ').trim(); // Clean up whitespace
 }
 
 function generateAnswer(question){
@@ -68,12 +79,41 @@ function generateAnswer(question){
   }
   for(let m of dynamicMemory){if(qLower.includes(m.key)) return ["I remember! Your " + m.key + " is " + m.value];}
 
-  // 3. Semantic vector search
-  const qVec=sentenceToVector(qLower);
-  let best=null, bestScore=0;
-  for(let item of knowledge){let s=cosine(qVec,item.vector); if(s>bestScore){bestScore=s; best=item;}}
-  if(best && bestScore>0.2){return best.answers.map(a=>rewriteAnswer(a,question));}
+  // 3. Semantic vector search (Enhanced to handle multiple topics)
+  const qVec = sentenceToVector(qLower);
+  const matchedTopics = [];
+  const MATCH_THRESHOLD = 0.2; 
+
+  for(let item of knowledge){
+    let score = cosine(qVec, item.vector);
+    // Only check topics that have a reasonable match
+    if(score > MATCH_THRESHOLD){
+      matchedTopics.push(item);
+    }
+  }
+
+  if (matchedTopics.length > 0) {
+    if (matchedTopics.length > 1) {
+      // Logic for COMPOUND/MULTIPLE questions: Combine answers into one structured response
+      let response = "I found information on a few topics you mentioned:\n\n";
+      
+      matchedTopics.forEach((topic, index) => {
+          // Apply tone-matching to the answer text
+          const topicAnswer = topic.answers.map(a => rewriteAnswer(a, question)).join(" ");
+          // Arrange answers using numbered lists for clarity
+          response += (index + 1) + ". " + topicAnswer + "\n";
+      });
+      
+      // Return as a single string element so it posts as one coherent block of text
+      return [response.trim()];
+
+    } else {
+      // Logic for SINGLE question: return the answer simply
+      return matchedTopics[0].answers.map(a => rewriteAnswer(a, question));
+    }
+  }
   
+  // 4. Default response
   return ["Sorry! I don’t have knowledge about that topic in my offline memory. You can try teaching me something."];
 }
 
@@ -170,8 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('clearChat').addEventListener('click', (e) => { e.preventDefault(); clearChat(); });
     document.getElementById('exportChat').addEventListener('click', (e) => { e.preventDefault(); exportChat(); });
 
-    // Input Handlers
+    // Input Handlers: Send only on button click (Enter key submission is disabled)
     document.getElementById('sendBtn').addEventListener('click', askAI);
-    
-    // ENTER KEY SUBMISSION IS DISABLED
 });
