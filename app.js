@@ -22,7 +22,8 @@ const casualResponses = [
   {keywords:["thank you","thanks"], responses:["You’re welcome!","Anytime!"]}
 ];
 
-let sessionMemory = []; 
+// --- PERSISTENCE CHANGE: Load history from localStorage or start fresh ---
+let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || []; 
 let dynamicMemory = JSON.parse(localStorage.getItem("dynamicMemory")) || [];
 
 function learnNewInfo(key,value){
@@ -86,7 +87,6 @@ function generateAnswer(question){
 
   for(let item of knowledge){
     let score = cosine(qVec, item.vector);
-    // Only check topics that have a reasonable match
     if(score > MATCH_THRESHOLD){
       matchedTopics.push(item);
     }
@@ -98,13 +98,10 @@ function generateAnswer(question){
       let response = "I found information on a few topics you mentioned:\n\n";
       
       matchedTopics.forEach((topic, index) => {
-          // Apply tone-matching to the answer text
           const topicAnswer = topic.answers.map(a => rewriteAnswer(a, question)).join(" ");
-          // Arrange answers using numbered lists for clarity
           response += (index + 1) + ". " + topicAnswer + "\n";
       });
       
-      // Return as a single string element so it posts as one coherent block of text
       return [response.trim()];
 
     } else {
@@ -119,22 +116,29 @@ function generateAnswer(question){
 
 
 /* --------------------------
-4. Chat and Feature Functions
+4. Chat and Feature Functions (Updated for Persistence)
 ---------------------------- */
-function addMessage(text,sender){
+function addMessage(text, sender, isFromHistory = false){
     const chat=document.getElementById("chatbox"); 
     const msg=document.createElement("div");
     msg.className="message "+sender;
     msg.textContent=text;
     chat.appendChild(msg);
     chat.scrollTop=chat.scrollHeight;
-    sessionMemory.push({sender: sender, text: text, timestamp: new Date().toLocaleString()});
+    
+    // Only save new messages to history/localStorage
+    if (!isFromHistory) {
+      const newEntry = {sender: sender, text: text, timestamp: new Date().toLocaleString()};
+      chatHistory.push(newEntry);
+      localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+    }
 }
 
 function addMultipleMessages(msgs){
     let i=0;
     function sendNext(){
         if(i>=msgs.length) return; 
+        // Post new messages (isFromHistory is false by default)
         addMessage(msgs[i],"ai"); 
         i++; 
         setTimeout(sendNext,500 + Math.random()*400);
@@ -146,33 +150,44 @@ function askAI(){
     const input=document.getElementById("userInput"); 
     const q=input.value.trim();
     if(!q)return;
+    // Post user message and save
     addMessage(q,"user");
     addMultipleMessages(generateAnswer(q));
     input.value=""; // Clear the textarea
 }
 
 function clearChat() {
-    document.getElementById("chatbox").innerHTML = "";
-    sessionMemory = [];
+    if (confirm("Are you sure you want to clear the entire chat history?")) {
+        document.getElementById("chatbox").innerHTML = "";
+        // --- PERSISTENCE CHANGE: Clear localStorage and memory array ---
+        chatHistory = [];
+        localStorage.removeItem('chatHistory');
+        addMessage("Chat history cleared!", "ai", true); // Post message but don't save it
+    }
 }
 
 function newChat() {
-    if (sessionMemory.length > 0) {
+    if (chatHistory.length > 0) {
         if (!confirm("Are you sure you want to start a new chat? The current conversation will be lost.")) {
             return;
         }
     }
-    clearChat();
+    // --- PERSISTENCE CHANGE: Clear localStorage and memory array ---
+    document.getElementById("chatbox").innerHTML = "";
+    chatHistory = [];
+    localStorage.removeItem('chatHistory');
+    // We don't post a message here as per your original requirement of no welcome message.
 }
 
 function exportChat() {
-    if (sessionMemory.length === 0) {
+    if (chatHistory.length === 0) {
         alert("The chat is empty. Nothing to export!");
         return;
     }
     let chatText = `--- Hare Krishna AI Conversation Export ---\n\n`;
-    sessionMemory.forEach(msg => {
+    chatHistory.forEach(msg => {
         const senderLabel = msg.sender === 'user' ? 'You' : 'AI';
+        // Note: Using the timestamp saved in the history object
         chatText += `[${msg.timestamp}] ${senderLabel}: ${msg.text}\n\n`;
     });
     const blob = new Blob([chatText], { type: 'text/plain' });
@@ -182,13 +197,20 @@ function exportChat() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    addMessage("Chat successfully exported!", "ai");
+    addMessage("Chat successfully exported!", "ai", true); // Post message but don't save it
 }
 
 /* --------------------------
 5. Event Listeners and Initialization
 ---------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- PERSISTENCE CHANGE: LOAD HISTORY ON DOM LOAD ---
+    chatHistory.forEach(entry => {
+        // Render existing messages, setting the flag 'true' so they aren't resaved.
+        addMessage(entry.text, entry.sender, true);
+    });
+
     // Dropdown Menu Toggle
     document.getElementById('menuBtn').addEventListener('click', (e) => {
         e.stopPropagation(); 
