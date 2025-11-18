@@ -3,36 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css"> 
-<title>Jay Sri Krishna AI</title>
+<link rel="stylesheet" href="css/style.css"> 
+<title>Hare Krishna AI</title>
 </head>
 <body>
 
 <header class="chat-header">
     <h1>Hare Krishna AI</h1>
     <div class="menu-container">
-        <button id="menuBtn" title="Chat Options">
+        <button id="menuBtn" title="Chat Options" aria-expanded="false" aria-controls="dropdownMenu">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
         </button>
-        <div id="dropdownMenu" class="dropdown-menu">
-            <a href="#" id="newChat">New chat</a>
-            <a href="#" id="clearChat">Clear chat</a>
-            <a href="#" id="exportChat">Export chat</a>
+        
+        <div id="dropdownMenu" class="dropdown-menu" role="menu">
+            <a href="#" id="newChat" role="menuitem">New chat</a>
+            <a href="#" id="exportChat" role="menuitem">Export chat</a>
+            
+            <a href="#" id="clearChat" class="clear-chat-btn" role="menuitem">
+                <span>Clear chat</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.12-2.12zM15.5 4l-.71-.71L14.79 4H10.21l-.01.01-.71-.71L8.5 4H6v2h12V4h-2.5z"/>
+                </svg>
+            </a>
         </div>
     </div>
 </header>
 
-<div id="chatbox"></div>
+<main id="chat-container">
+    <canvas id="chatCanvas"></canvas> 
+</main>
 
 <div class="input-area">
-  <textarea name="Type your message here..." id="userInput" cols="5" rows="2" placeholder="Enter you massage here..."></textarea>
-  <button id="sendBtn">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-    </svg>
-  </button>
+    <input type="text" id="userInput" placeholder="Ask Hare Krishna AI...">
+    <button id="sendBtn" title="Send">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.12.0/math.min.js"></script>
-<script src="app.js"></script>
+
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

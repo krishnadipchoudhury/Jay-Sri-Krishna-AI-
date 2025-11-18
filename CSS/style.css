@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+    --primary-color: #10a37f;
+    --secondary-color: #ff4500; /* Red for destructive action */
+    --light-color-1: #607D8B; /* Light color for PDF subheading */
+    --light-color-2: #90A4AE; /* Lighter color for PDF subheading */
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #f5f5f5;
+    color: #333;
+}
+
+/* --- HEADER STYLES --- */
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    margin: 0;
+    background-color: var(--primary-color);
+    color: #fff;
+    height: 48px; 
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+.chat-header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+    margin: 0;
+}
+
+/* Dropdown Menu Styles (Standard HTML) */
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+#menuBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+}
+
+#menuBtn svg {
+    fill: white;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 10; /* Increased z-index */
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+/* --- CLEAR CHAT RED STYLING --- */
+#clearChat {
+    color: var(--secondary-color); /* Make text red */
+    display: flex; /* Use flex to align icon and text */
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px; /* Adjust padding for better look */
+}
+
+#clearChat svg {
+    margin-left: 10px;
+    width: 16px;
+    height: 16px;
+    fill: var(--secondary-color); /* Make icon red */
+}
+
+#clearChat:hover {
+    background-color: #ffe8e8; /* Light red hover background */
+}
+
+
+/* --- MAIN CONTAINER & CANVAS --- */
+#chat-container {
+    flex-grow: 1; /* Take up all remaining space */
+    position: relative;
+    overflow: hidden; /* Hide scrollbars, scrolling is manual in JS */
+}
+
+#chatCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- INPUT AREA (Remains HTML) --- */
+.input-area {
+    /* Moved outside #chat-container in HTML for better structure, CSS remains the same */
+    display: flex;
+    padding: 10px 15px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+    height: 60px; /* Increased slightly for better visual balance */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+#userInput {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 16px; /* Increased font size for readability */
+    margin-right: 10px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#userInput:focus {
+    border-color: var(--primary-color);
+}
+
+#sendBtn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    min-width: 40px; /* Added min-width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+#sendBtn svg {
+    fill: white;
+    width: 20px;
+    height: 20px;
+}
+
+#sendBtn:hover {
+    background-color: #0d8a6b;
+}
+
+#sendBtn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* --- PDF PRINT STYLES (REMAINS DOM-BASED FOR PRINT WINDOW) --- */
+@media print {
+    /* Hide all non-chat elements */
+    .chat-header, .input-area, .menu-container {
+        display: none !important;
+    }
+    body {
+        background: white !important;
+        color: black !important;
+        display: block; 
+        height: auto;
+        padding-top: 60px; /* Space for fixed PDF header */
+    }
+    
+    /* Ensure only the chat content is visible */
+    #print-chatbox { /* This ID is used by pdf_export.js */
+        overflow: visible;
+        padding: 0;
+        gap: 8px;
+        break-before: page;
+        height: auto;
+        padding: 20px;
+        margin: 0;
+    }
+
+    /* Message styling for PDF, not the canvas */
+    .message {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        border: 1px solid #eee;
+        padding: 10px;
+        max-width: 100% !important;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        background-color: #fff;
+    }
+
+    .message.user {
+        background-color: #e6f7f2;
+        text-align: right;
+        margin-left: auto;
+    }
+    
+    .message.ai {
+        background-color: #fff;
+        text-align: left;
+        margin-right: auto;
+    }
+    
+    /* UPGRADED PDF Header styles */
+    .pdf-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 10px 20px;
+        margin: -20px -20px 20px -20px; 
+        background-color: #fff;
+        border-bottom: 2px solid var(--primary-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        /* Removed 'break-after: always;' to prevent unnecessary page break */
+        z-index: 1000; 
+    }
+
+    .pdf-header h2 {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0;
+        color: #333; 
+    }
+
+    .pdf-header .sub-heading {
+        font-size: 14px; 
+        font-weight: 400;
+        margin-left: 10px;
+        color: var(--light-color-2); 
+    }
+
+    .pdf-header p {
+        font-size: 12px;
+        color: #666;
+        margin: 0;
+    }
+
+    /* Timestamp visible only in print mode */
+    .message .timestamp { 
+        display: block; 
+        font-size: 10px; 
+        color: #999; 
+        margin-top: 5px; 
+        text-align: right;
+    }
+    .message.ai .timestamp { 
+        text-align: left; 
+    }
+}

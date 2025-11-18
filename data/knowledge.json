@@ -1,0 +1,44 @@
+[
+  {
+    "topic": "India Area",
+    "keywords": ["area", "size", "how big"],
+    "answers": ["India covers an area of about 3.287 million square kilometres.", "It is the 7th largest country in the world by land area."],
+    "vector": []
+  },
+  {
+    "topic": "India Capital",
+    "keywords": ["capital", "main city", "seat of government"],
+    "answers": ["The capital of India is New Delhi.", "It serves as the seat of the government."],
+    "vector": []
+  },
+  {
+    "topic": "Uttar Pradesh Population",
+    "keywords": ["population", "people", "up", "most populous"],
+    "answers": ["Uttar Pradesh has a population of over 240 million people.", "It is the most populous state in India."],
+    "vector": []
+  },
+  {
+    "topic": "Ganga River",
+    "keywords": ["river", "ganga", "longest", "sacred"],
+    "answers": ["The Ganga is the longest and most sacred river of India.", "It originates from the Gangotri Glacier in the Himalayas."],
+    "vector": []
+  },
+  {
+    "topic": "National Animal of India",
+    "keywords": ["animal", "national animal", "tiger"],
+    "answers": ["The national animal of India is the Bengal Tiger.", "Represents strength, agility, and grace."],
+    "vector": []
+  },
+  {
+    "topic": "Climate of India",
+    "keywords": ["climate", "weather", "monsoon"],
+    "answers": ["India's climate is dominated by the monsoon, with distinct wet and dry seasons."],
+    "vector": []
+  },
+  {
+    "topic": "Thar Desert",
+    "keywords": ["desert", "thar", "great indian desert"],
+    "answers": ["The Thar Desert, also known as the Great Indian Desert, is a large arid region in the northwestern part of the Indian subcontinent."],
+    "vector": []
+  }
+]
