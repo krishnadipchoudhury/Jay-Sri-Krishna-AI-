@@ -1,50 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub Login</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .github-logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      pointer-events: none;
-      /* Logo NOT clickable */
-      margin-bottom: 20px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Login</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+.github-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  pointer-events: none; /* Logo NOT clickable */
+  margin-bottom: 20px;
+}
+</style>
 </head>
-
 <body class="h-screen flex items-center justify-center bg-gray-100">
-  
-  <!-- MAIN LOGIN CARD -->
-  <div class="w-full max-w-sm bg-white p-8 rounded-xl shadow-2xl text-center space-y-6">
-    
-    <h1 class="text-4xl font-extrabold text-gray-800 mb-2">Hare Krishna AI</h1>
-    <p class="text-gray-500 text-sm">Sign in to continue your spiritual journey</p>
-    
-    <!-- GitHub Logo (Not Clickable) -->
-    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" class="github-logo mx-auto" />
-    
-    <!-- GitHub Login Button -->
-    <a id="githubLogin" class="inline-block px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 transition duration-200">
-      Sign in with GitHub
-    </a>
-    
-  </div>
-  
-  <script>
-    // 🔹 Replace with your actual Vercel domain
-    const VERCEL_DOMAIN = "https://jay-sri-krishna-ai-51re.vercel.app";
-    
-    // Update href dynamically
-    document.getElementById("githubLogin").href = `${VERCEL_DOMAIN}/api/auth/github/login`;
-  </script>
-  
-</body>
 
+<div class="w-full max-w-sm bg-white p-8 rounded-xl shadow-2xl text-center space-y-6">
+  <h1 class="text-4xl font-extrabold text-gray-800 mb-2">Hare Krishna AI</h1>
+  <p class="text-gray-500 text-sm">Sign in to continue your spiritual journey</p>
+
+  <!-- GitHub Logo -->
+  <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
+       alt="GitHub Logo" 
+       class="github-logo mx-auto" />
+
+  <!-- Clickable Sign-In Link -->
+  <a href="/api/auth/github/login" 
+     class="inline-block px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 transition duration-200">
+     Sign in with GitHub
+  </a>
+</div>
+
+</body>
 </html>

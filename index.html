@@ -16,17 +16,12 @@
                 <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
             </svg>
         </button>
-        
         <div id="dropdownMenu" class="dropdown-menu" role="menu">
-            <!-- GitHub login link -->
-            <a href="login.html" 
-               class="text-lg font-semibold text-blue-600 hover:underline block">
-               Login With GitHub
+            <a href="login.html" class="text-lg font-semibold text-blue-600 hover:underline block">
+                Login With GitHub
             </a>
-            
             <a href="#" id="newChat" role="menuitem">New chat</a>
             <a href="#" id="exportChat" role="menuitem">Export chat</a>
-            
             <a href="#" id="clearChat" class="clear-chat-btn" role="menuitem">
                 <span>Clear chat</span>
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -58,15 +53,6 @@
 </main>
 
 <script type="module" src="js/main.js"></script>
-
-<script>
-  // Simple dropdown toggle (won't interfere with your existing scripts)
-  const menuBtn = document.getElementById('menuBtn');
-  const dropdownMenu = document.getElementById('dropdownMenu');
-  menuBtn.addEventListener('click', () => {
-    dropdownMenu.classList.toggle('hidden');
-  });
-</script>
 
 </body>
 </html>
