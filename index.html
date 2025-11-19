@@ -12,14 +12,18 @@
     <h1>Hare Krishna AI</h1>
     <div class="menu-container">
         <button id="menuBtn" title="Chat Options" aria-expanded="false" aria-controls="dropdownMenu">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
         </button>
         
         <div id="dropdownMenu" class="dropdown-menu" role="menu">
+            <!-- GitHub login link -->
             <a href="login.html" 
-   class="text-lg font-semibold text-blue-600 hover:underline block">
-   Login With GitHub
-</a>
+               class="text-lg font-semibold text-blue-600 hover:underline block">
+               Login With GitHub
+            </a>
+            
             <a href="#" id="newChat" role="menuitem">New chat</a>
             <a href="#" id="exportChat" role="menuitem">Export chat</a>
             
@@ -37,14 +41,13 @@
     <canvas id="chatCanvas"></canvas>
 
     <div class="input-area">
-   <textarea 
-  id="userInput" 
-  placeholder="Hi, what's going. Call me whenever and wherever you need my help." 
-  aria-label="Chat input"
-  rows="5" 
-  cols="50"
->
-</textarea>
+        <textarea 
+            id="userInput" 
+            placeholder="Hi, what's going. Call me whenever and wherever you need my help." 
+            aria-label="Chat input"
+            rows="5" 
+            cols="50">
+        </textarea>
 
         <button id="sendBtn" title="Send Message">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
@@ -55,6 +58,15 @@
 </main>
 
 <script type="module" src="js/main.js"></script>
+
+<script>
+  // Simple dropdown toggle (won't interfere with your existing scripts)
+  const menuBtn = document.getElementById('menuBtn');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  menuBtn.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('hidden');
+  });
+</script>
 
 </body>
 </html>

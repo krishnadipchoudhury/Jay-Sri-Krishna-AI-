@@ -9,12 +9,12 @@ export default async function handler(req, res) {
   
   try {
     // Exchange code for access token
-    const tokenResponse = await fetch(`https://github.com/login/oauth/access_token`, {
+    const tokenResponse = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",
       headers: { Accept: "application/json" },
       body: new URLSearchParams({
-        client_id: "Ov23liZ7NQJpEfJ5tA0F",
-        client_secret: process.env.GITHUB_CLIENT_SECRET,
+        client_id: "Ov23liZ7NQJpEfJ5tA0F", // public
+        client_secret: process.env.GITHUB_CLIENT_SECRET, // private in Vercel
         code: code
       })
     });
@@ -26,16 +26,17 @@ export default async function handler(req, res) {
       return res.status(400).send("Failed to get access token");
     }
     
-    // Get GitHub user data
+    // Fetch user info
     const userResponse = await fetch("https://api.github.com/user", {
       headers: { Authorization: `Bearer ${accessToken}` }
     });
     
     const userData = await userResponse.json();
     
-    res.send(`<h1>Hello ${userData.login}!</h1><p>You are now logged in with GitHub.</p>`);
-    
-  } catch (error) {
-    res.status(500).send("Error during GitHub OAuth: " + error.message);
+    // Redirect to index.html after successful login
+    res.redirect(`/index.html?username=${encodeURIComponent(userData.login)}`);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
   }
 }
