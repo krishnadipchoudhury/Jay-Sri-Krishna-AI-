@@ -8,13 +8,13 @@ export default async function handler(req, res) {
   }
   
   try {
-    // Exchange code for access token
+    // Exchange the code for access token
     const tokenResponse = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",
       headers: { Accept: "application/json" },
       body: new URLSearchParams({
         client_id: "Ov23liZ7NQJpEfJ5tA0F", // public
-        client_secret: process.env.GITHUB_CLIENT_SECRET, // private in Vercel
+        client_secret: process.env.GITHUB_CLIENT_SECRET, // stored in Vercel
         code: code
       })
     });
@@ -26,14 +26,14 @@ export default async function handler(req, res) {
       return res.status(400).send("Failed to get access token");
     }
     
-    // Fetch user info
+    // Fetch GitHub user info
     const userResponse = await fetch("https://api.github.com/user", {
       headers: { Authorization: `Bearer ${accessToken}` }
     });
     
     const userData = await userResponse.json();
     
-    // Redirect to index.html after successful login
+    // Redirect back to index.html with username
     res.redirect(`/index.html?username=${encodeURIComponent(userData.login)}`);
   } catch (err) {
     console.error(err);
