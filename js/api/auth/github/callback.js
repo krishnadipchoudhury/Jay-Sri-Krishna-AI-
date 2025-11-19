@@ -1,42 +1,45 @@
 import fetch from "node-fetch";
 
+export default async function handler(req, res) import fetch from "node-fetch";
+
 export default async function handler(req, res) {
-  const code = req.query.code;
-  
-  if (!code) {
-    return res.status(400).send("No code provided");
-  }
-  
   try {
-    // Exchange the code for access token
+    const code = req.query.code;
+    
+    if (!code) {
+      return res.status(400).send("Error: No code provided by GitHub.");
+    }
+    
+    // Exchange code for access token
     const tokenResponse = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",
       headers: { Accept: "application/json" },
       body: new URLSearchParams({
-        client_id: "Ov23liZ7NQJpEfJ5tA0F", // public
-        client_secret: process.env.GITHUB_CLIENT_SECRET, // stored in Vercel
+        client_id: process.env.GITHUB_CLIENT_ID,
+        client_secret: process.env.GITHUB_CLIENT_SECRET,
         code: code
       })
     });
     
     const tokenData = await tokenResponse.json();
-    const accessToken = tokenData.access_token;
     
-    if (!accessToken) {
-      return res.status(400).send("Failed to get access token");
+    if (!tokenData.access_token) {
+      return res.status(400).send("Error: Failed to get access token from GitHub.");
     }
     
-    // Fetch GitHub user info
+    const accessToken = tokenData.access_token;
+    
+    // Fetch user info from GitHub
     const userResponse = await fetch("https://api.github.com/user", {
       headers: { Authorization: `Bearer ${accessToken}` }
     });
     
     const userData = await userResponse.json();
     
-    // Redirect back to index.html with username
-    res.redirect(`/index.html?username=${encodeURIComponent(userData.login)}`);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Internal Server Error");
+    // Send a simple welcome message or redirect to your app
+    res.send(`Hello ${userData.login}! You have successfully logged in with GitHub.`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error during GitHub login.");
   }
 }
