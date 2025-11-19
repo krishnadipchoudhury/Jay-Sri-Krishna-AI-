@@ -1,48 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GitHub Login</title>
-
-  <!-- Tailwind CSS -->
+  
+  <!-- Tailwind CSS CDN (safe for SBCK + mobile) -->
   <script src="https://cdn.tailwindcss.com"></script>
-
+  
   <style>
+    /* GitHub logo as perfect circle, not clickable */
     .github-logo {
-      width: 50px;
-      height: 50px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       object-fit: cover;
-      pointer-events: none; /* Logo is not clickable */
+      pointer-events: none;
+      /* logo not clickable */
     }
   </style>
 </head>
 
 <body class="h-screen flex items-center justify-center bg-gray-100">
-
-  <!-- MAIN CONTAINER / BOX -->
-  <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-sm text-center space-y-5">
-
-    <h1 class="text-2xl font-bold text-gray-800">Sign in</h1>
-    <p class="text-gray-500 text-sm">Use your GitHub account</p>
-
-    <!-- Logo (Not Clickable) -->
-    <img 
-      src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
-      alt="GitHub Logo" 
-      class="github-logo mx-auto"
-    />
-
-    <!-- Text Link (Clickable Only) -->
-    <a 
-      href="https://github.com/login/oauth/authorize?client_id=Ov23liZ7NQJpEfJ5tA0F&redirect_uri=https://YOUR-VERCEL-SITE.vercel.app/api/auth/github/callback"
-      class="text-lg font-semibold text-blue-600 hover:underline block"
-    >
+  
+  <!-- MAIN CARD CONTAINER -->
+  <div class="w-full max-w-sm bg-white p-8 rounded-xl shadow-2xl transform transition-all duration-300 hover:shadow-xl text-center space-y-6">
+    
+    <!-- Title -->
+    <h1 class="text-4xl font-extrabold text-primary mb-2">Hare Krishna AI</h1>
+    <p class="text-gray-500 text-sm">Sign in to continue your spiritual journey</p>
+    
+    <!-- GitHub Logo -->
+    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" class="github-logo mx-auto" />
+    
+    <!-- Sign-in Link (only clickable) -->
+    <a href="https://github.com/login/oauth/authorize?client_id=Ov23liZ7NQJpEfJ5tA0F&redirect_uri=https://YOUR-VERCEL-SITE.vercel.app/api/auth/github/callback" class="text-lg font-semibold text-blue-600 hover:underline block mt-4">
       Sign in with GitHub
     </a>
-
+    
   </div>
-
+  
 </body>
+
 </html>
