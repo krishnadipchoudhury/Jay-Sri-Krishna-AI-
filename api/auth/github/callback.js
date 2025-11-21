@@ -1,36 +1,49 @@
 export default async function handler(req, res) {
   try {
     const code = req.query.code;
-    if (!code) return res.status(400).send("Error: No code provided by GitHub.");
+    if (!code) {
+      return res.status(400).send("GitHub did not return a code.");
+    }
     
-    // Exchange code for access token
-    const tokenResponse = await fetch("https://github.com/login/oauth/access_token", {
-      method: "POST",
-      headers: { Accept: "application/json" },
-      body: new URLSearchParams({
-        client_id: process.env.GITHUB_CLIENT_ID,
-        client_secret: process.env.GITHUB_CLIENT_SECRET,
-        code: code
-      })
-    });
+    // Exchange code → access token
+    const tokenRes = await fetch(
+      "https://github.com/login/oauth/access_token",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json"
+        },
+        body: new URLSearchParams({
+          client_id: process.env.GITHUB_CLIENT_ID,
+          client_secret: process.env.GITHUB_CLIENT_SECRET,
+          code
+        })
+      }
+    );
     
-    const tokenData = await tokenResponse.json();
+    const tokenData = await tokenRes.json();
+    
+    if (!tokenData.access_token) {
+      return res.status(500).send("Failed to get GitHub token.");
+    }
+    
     const accessToken = tokenData.access_token;
     
-    if (!accessToken) return res.status(400).send("Error: Failed to get access token from GitHub.");
-    
-    // Fetch user info
-    const userResponse = await fetch("https://api.github.com/user", {
-      headers: { Authorization: `Bearer ${accessToken}` }
+    // Fetch GitHub user
+    const userRes = await fetch("https://api.github.com/user", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "User-Agent": "Vercel-App"
+      }
     });
     
-    const userData = await userResponse.json();
+    const user = await userRes.json();
     
-    // Redirect back to index.html with username as query parameter
-    res.redirect(`/index.html?user=${userData.login}`);
+    // Redirect to homepage
+    res.redirect(`/index.html?user=${encodeURIComponent(user.login)}`);
     
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Server error during GitHub login.");
+  } catch (err) {
+    console.error("Callback error:", err);
+    res.status(500).send("Server crashed inside callback.");
   }
 }
